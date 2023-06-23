@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class MainMenuClickInfoButton : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
+public class MainMenuClickNoAdButton : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 {
 	[SerializeField] private Image img;
 	[SerializeField] private Sprite _default, pressed;
@@ -23,7 +23,7 @@ public void OnPointerDown(PointerEventData eventData){
 }
 
 public void wasClicked(){
-	Debug.Log("Clicked info");
+	Debug.Log("Clicked noad");
 //SceneManager.LoadScene(SceneManager.GetActiveScene().buildI//ndex + 1);
 
 }
