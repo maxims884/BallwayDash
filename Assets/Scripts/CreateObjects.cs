@@ -9,8 +9,9 @@ public class CreateObjects : MonoBehaviour
     public Material redMat;
     public Material blueMat;
     public Material yellowMat;
-    public int totalCountBalls; 
     
+    private int totalCountBalls = LevelSettings.GetInstance().GetBallCount(); 
+ 
     void Start()
     {
         int k = 0;

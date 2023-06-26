@@ -15,6 +15,8 @@ public class MainMenuHorizontalSwither : MonoBehaviour
 		set{
 			m_index = value;
 			text.text = data[m_index];
+			LevelSettings.GetInstance().SetBallCount((index * 4) + 4);
+			LevelSettings.GetInstance().SaveBallCountIndex(m_index);
 		}
 	}
 
@@ -24,7 +26,7 @@ public class MainMenuHorizontalSwither : MonoBehaviour
     void Start()
     {
         text = transform.Find("Text").GetComponent<Text>();
-	   index = defaultValueIndex;
+	index = LevelSettings.GetInstance().LoadBallCountIndex();
     }
 
     // Update is called once per frame

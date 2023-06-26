@@ -23,8 +23,6 @@ public void OnPointerDown(PointerEventData eventData){
 }
 
 public void wasClicked(){
-	Debug.Log("Clicked ");
-SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
+	SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 }
 }
