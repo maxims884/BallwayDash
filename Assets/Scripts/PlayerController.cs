@@ -116,5 +116,13 @@ public class PlayerController : MonoBehaviour
         // // }
 
         // }
+
+	if (Application.platform == RuntimePlatform.Android)
+  	{
+    		if (Input.GetKeyDown(KeyCode.Escape)) 
+    		{
+      			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    		}
+  	}
     }
 }

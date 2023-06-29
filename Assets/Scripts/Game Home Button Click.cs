@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class MainMenuModal : MonoBehaviour
+public class GameHomeButtonClick : MonoBehaviour
 {
-    public GameObject window;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,11 +17,7 @@ public class MainMenuModal : MonoBehaviour
         
     }
 
-    public void show(){
-    	window.SetActive(true);
-    }
-
-    public void hide(){
-	window.SetActive(false);
+    public void HomeClicked(){
+    	SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }
