@@ -2,21 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
-
-    // [SerializeField] KeyCode keyOne;
-    // [SerializeField] KeyCode keyTwo;
-    // [SerializeField] KeyCode keyThree;
-    // [SerializeField] KeyCode keyFour;
-    
-    // [SerializeField] Vector3 moveDirectioX;
-    // [SerializeField] Vector3 moveDirectionY;
-
-    // private float width;
-    // private float height;
-    // private Vector3 position;
-
     private CharacterController controller;
     private Vector3 playerVelocity;
     private float playerSpeed = 6.0f;
@@ -24,8 +13,10 @@ public class PlayerController : MonoBehaviour
     private float jumpHeight = 1.0f;
     private float gravityValue = -9.81f;
 
+    private int CollisionCount = 0;
     private PlayerControl playerInput; 
 
+    private Text textScore;
     private void Awake() {
         playerInput = new PlayerControl();
     }
@@ -38,40 +29,32 @@ public class PlayerController : MonoBehaviour
         playerInput.Disable();
     }
 
-    // void FixedUpdate()
-    // {
-        // if(Input.GetKey(keyOne))
-        // {
-        //     GetComponent<Rigidbody>().velocity += moveDirectioX;
-        // }
+    private void OnCollisionEnter(Collision collision)
+    {
+	if (collision.collider.CompareTag("sph"))
+        {
+	    int current = LevelSettings.GetInstance().GetCurrentScore();
+	    current = current + (LevelSettings.GetInstance().GetUpdatedCollisedBalls() - LevelSettings.GetInstance().GetOldUpdatedCollisedBalls()) * 100 ; 
+	    CollisionCount++;
+	    if(CollisionCount == 5){
+		CollisionCount = 0;
+		current = current - 10;	
+	    }
+            LevelSettings.GetInstance().SetCurrentScore(current);
+	    textScore.text = current.ToString();
+        }
+    }
 
-        // if(Input.GetKey(keyTwo))
-        // {
-        //     GetComponent<Rigidbody>().velocity -= moveDirectioX;
-        // }
-
-        // if(Input.GetKey(keyThree))
-        // {
-        //     GetComponent<Rigidbody>().velocity += moveDirectionY;
-        // }
-
-        // if(Input.GetKey(keyFour))
-        // {
-        //     GetComponent<Rigidbody>().velocity -= moveDirectionY;
-        // }
-    // }
-
-    // private void OnTriggerEnter(Collider other)
-    // {
-    //     if(this.CompareTag("Player") && other.CompareTag("Finish")){
-    //         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    //     }
-    // }
-
-    // Start is called before the first frame update
     void Start()
     {
         controller = gameObject.AddComponent<CharacterController>();
+
+	GameObject textObject = GameObject.Find("Score");
+        if (textObject != null)
+        {
+            // Get the Text component from the text object
+            textScore = textObject.GetComponent<Text>();
+        }
     }
 
     // Update is called once per frame
@@ -103,19 +86,6 @@ public class PlayerController : MonoBehaviour
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
-
-        // if(Input.touchCount > 0) {
-        // Touch touch = Input.GetTouch(0);
-        // Vector2 pos = touch.position;
-        // pos.x = (pos.x - width) / width;
-        // pos.y = (pos.y - height) / height;
-        // position = new Vector3(-pos.x, pos.y, 0.0f);
-        // // if (touch.phase == TouchPhase.Moved)
-        // // {
-        //     GetComponent<Rigidbody>().position = position;
-        // // }
-
-        // }
 
 	if (Application.platform == RuntimePlatform.Android)
   	{

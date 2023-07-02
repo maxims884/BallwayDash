@@ -76,6 +76,7 @@ public class CreateObjects : MonoBehaviour
                 }                  
         }
 
+	LevelSettings.GetInstance().SetUpdatedCollisedBalls(blueCount+greenCount+redCount+yellowCount);
         if(blueCount == totalCount && yellowCount == totalCount && redCount == totalCount && greenCount == totalCount){
             Debug.Log("YOU WIN"); 
         }

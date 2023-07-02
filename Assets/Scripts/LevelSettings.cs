@@ -6,8 +6,10 @@ public class LevelSettings
 {
     public static LevelSettings instance; 
 
-    private int BallCount = 4;    
-
+    private int BallCount = 4;
+    private int UpdatedCollisedBalls = 0;  
+    private int OldUpdatedCollisedBalls = 0; 
+    private int CurrentScore = 0;
     private LevelSettings(){}
     public static LevelSettings GetInstance() {
         if(instance == null)
@@ -37,5 +39,26 @@ public class LevelSettings
     		Debug.LogError("There is no save data!");
 		return 0;
 	}
+    }
+
+    public void SetUpdatedCollisedBalls(int count){
+	OldUpdatedCollisedBalls = UpdatedCollisedBalls;
+	UpdatedCollisedBalls = count;
+    }
+
+    public int GetUpdatedCollisedBalls(){
+	return UpdatedCollisedBalls;
+    }
+
+    public int GetOldUpdatedCollisedBalls(){
+	return OldUpdatedCollisedBalls;
+    }
+
+    public void SetCurrentScore(int score){
+	CurrentScore = score; 
+    }
+
+    public int GetCurrentScore(){
+	return CurrentScore;
     }
 }
