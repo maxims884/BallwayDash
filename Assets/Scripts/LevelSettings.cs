@@ -10,6 +10,10 @@ public class LevelSettings
     private int UpdatedCollisedBalls = 0;  
     private int OldUpdatedCollisedBalls = 0; 
     private int CurrentScore = 0;
+    private int OldCount = 0;
+
+    private bool IsChangedScore = false;
+
     private LevelSettings(){}
     public static LevelSettings GetInstance() {
         if(instance == null)
@@ -41,8 +45,14 @@ public class LevelSettings
 	}
     }
 
+	
     public void SetUpdatedCollisedBalls(int count){
-	OldUpdatedCollisedBalls = UpdatedCollisedBalls;
+	//if(OldUpdatedCollisedBalls != count) OldUpdatedCollisedBalls = UpdatedCollisedBalls;
+	if(OldCount < count) {
+		OldUpdatedCollisedBalls = UpdatedCollisedBalls;
+		OldCount = count;
+		SetChangedScore(true);
+	}
 	UpdatedCollisedBalls = count;
     }
 
@@ -58,7 +68,20 @@ public class LevelSettings
 	CurrentScore = score; 
     }
 
+    public void AddCurrentScore(int addScore){
+	CurrentScore += addScore; 
+    }
+
     public int GetCurrentScore(){
 	return CurrentScore;
     }
+
+    public void SetChangedScore(bool isChanged){
+	IsChangedScore = isChanged; 
+    }
+
+    public bool GetChangedScore(){
+	return IsChangedScore;
+    }
+
 }

@@ -33,15 +33,11 @@ public class PlayerController : MonoBehaviour
     {
 	if (collision.collider.CompareTag("sph"))
         {
-	    int current = LevelSettings.GetInstance().GetCurrentScore();
-	    current = current + (LevelSettings.GetInstance().GetUpdatedCollisedBalls() - LevelSettings.GetInstance().GetOldUpdatedCollisedBalls()) * 100 ; 
 	    CollisionCount++;
 	    if(CollisionCount == 5){
 		CollisionCount = 0;
-		current = current - 10;	
+		LevelSettings.GetInstance().AddCurrentScore(-2);	
 	    }
-            LevelSettings.GetInstance().SetCurrentScore(current);
-	    textScore.text = current.ToString();
         }
     }
 
@@ -52,12 +48,10 @@ public class PlayerController : MonoBehaviour
 	GameObject textObject = GameObject.Find("Score");
         if (textObject != null)
         {
-            // Get the Text component from the text object
             textScore = textObject.GetComponent<Text>();
         }
     }
 
-    // Update is called once per frame
     void Update()
     {   
 
@@ -77,8 +71,6 @@ public class PlayerController : MonoBehaviour
             gameObject.transform.forward = move;
         }
 
-
-        // Changes the height position of the player..
         if (playerInput.FindAction("Jump").triggered && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
@@ -94,5 +86,10 @@ public class PlayerController : MonoBehaviour
       			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     		}
   	}
+	if(LevelSettings.GetInstance().GetChangedScore()){
+		LevelSettings.GetInstance().AddCurrentScore((LevelSettings.GetInstance().GetUpdatedCollisedBalls() - LevelSettings.GetInstance().GetOldUpdatedCollisedBalls())*10);
+		LevelSettings.GetInstance().SetChangedScore(false);
+	}
+	textScore.text = LevelSettings.GetInstance().GetCurrentScore().ToString();
     }
 }
