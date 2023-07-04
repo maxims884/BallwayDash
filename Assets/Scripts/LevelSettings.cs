@@ -11,8 +11,9 @@ public class LevelSettings
     private int OldUpdatedCollisedBalls = 0; 
     private int CurrentScore = 0;
     private int OldCount = 0;
-
+    private int BestScore = 0;
     private bool IsChangedScore = false;
+    private int CurrentLevelIndex = 0;
 
     private LevelSettings(){}
     public static LevelSettings GetInstance() {
@@ -31,6 +32,7 @@ public class LevelSettings
 
     public void SaveBallCountIndex(int index){
     	PlayerPrefs.SetInt("BallCountIndex", index);
+	CurrentLevelIndex = index;
     }
 
     public int LoadBallCountIndex(){
@@ -45,9 +47,14 @@ public class LevelSettings
 	}
     }
 
-	
+    public void ResetScore(){
+	OldUpdatedCollisedBalls = 0;
+	UpdatedCollisedBalls = 0;
+	CurrentScore = 0;
+	OldCount = 0;
+    }	
+
     public void SetUpdatedCollisedBalls(int count){
-	//if(OldUpdatedCollisedBalls != count) OldUpdatedCollisedBalls = UpdatedCollisedBalls;
 	if(OldCount < count) {
 		OldUpdatedCollisedBalls = UpdatedCollisedBalls;
 		OldCount = count;
@@ -84,4 +91,29 @@ public class LevelSettings
 	return IsChangedScore;
     }
 
+    public void SetBestScore(int score){
+	BestScore = score; 
+    }
+
+    public int GetBestScore(){
+	return BestScore;
+    }
+
+    public void LoadBestScore(){
+    	if (PlayerPrefs.HasKey("BestScoreIndex" + CurrentLevelIndex))
+  	{
+		BestScore = PlayerPrefs.GetInt("BestScoreIndex" + CurrentLevelIndex);
+      	}
+  	else{
+		BestScore = 0;
+	}
+    }
+
+    public void CheckBestScore(){
+	if(BestScore < CurrentScore) 
+	{
+		BestScore = CurrentScore;
+		PlayerPrefs.SetInt("BestScoreIndex" + CurrentLevelIndex, BestScore);
+	}
+    }
 }

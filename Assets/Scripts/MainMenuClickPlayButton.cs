@@ -24,5 +24,7 @@ public void OnPointerDown(PointerEventData eventData){
 
 public void wasClicked(){
 	SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+	LevelSettings.GetInstance().ResetScore();
+	LevelSettings.GetInstance().LoadBestScore();
 }
 }

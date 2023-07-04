@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     private PlayerControl playerInput; 
 
     private Text textScore;
+    private Text textBestScore;
+
     private void Awake() {
         playerInput = new PlayerControl();
     }
@@ -34,7 +36,7 @@ public class PlayerController : MonoBehaviour
 	if (collision.collider.CompareTag("sph"))
         {
 	    CollisionCount++;
-	    if(CollisionCount == 5){
+	    if(CollisionCount == 3){
 		CollisionCount = 0;
 		LevelSettings.GetInstance().AddCurrentScore(-2);	
 	    }
@@ -49,6 +51,12 @@ public class PlayerController : MonoBehaviour
         if (textObject != null)
         {
             textScore = textObject.GetComponent<Text>();
+        }
+
+	GameObject textObjectBest = GameObject.Find("BestScore");
+        if (textObjectBest != null)
+        {
+            textBestScore = textObjectBest.GetComponent<Text>();
         }
     }
 
@@ -88,8 +96,10 @@ public class PlayerController : MonoBehaviour
   	}
 	if(LevelSettings.GetInstance().GetChangedScore()){
 		LevelSettings.GetInstance().AddCurrentScore((LevelSettings.GetInstance().GetUpdatedCollisedBalls() - LevelSettings.GetInstance().GetOldUpdatedCollisedBalls())*10);
+		LevelSettings.GetInstance().CheckBestScore();
 		LevelSettings.GetInstance().SetChangedScore(false);
 	}
 	textScore.text = LevelSettings.GetInstance().GetCurrentScore().ToString();
+	textBestScore.text = LevelSettings.GetInstance().GetBestScore().ToString();
     }
 }
