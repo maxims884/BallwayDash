@@ -14,7 +14,7 @@ public class LevelSettings
     private int BestScore = 0;
     private bool IsChangedScore = false;
     private int CurrentLevelIndex = 0;
-
+    private bool IsLevelCompleted = false;
     private LevelSettings(){}
     public static LevelSettings GetInstance() {
         if(instance == null)
@@ -115,5 +115,17 @@ public class LevelSettings
 		BestScore = CurrentScore;
 		PlayerPrefs.SetInt("BestScoreIndex" + CurrentLevelIndex, BestScore);
 	}
+    }
+
+    public void LevelComplete(){
+	Debug.Log("Level Complete");
+    }
+
+    public void SetIsLevelCompleted(bool complete){
+	IsLevelCompleted = complete; 
+    }
+
+    public bool GetIsLevelCompleted(){
+	return IsLevelCompleted;
     }
 }

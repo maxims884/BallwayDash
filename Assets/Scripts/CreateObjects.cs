@@ -10,6 +10,8 @@ public class CreateObjects : MonoBehaviour
     public Material blueMat;
     public Material yellowMat;
     
+    public GameObject WinPanel; 
+
     private int totalCountBalls = LevelSettings.GetInstance().GetBallCount(); 
  
     void Start()
@@ -81,8 +83,11 @@ public class CreateObjects : MonoBehaviour
 	//Debug.Log("redCount" + redCount); 
 	//Debug.Log("yellowCount" + yellowCount); 
 	LevelSettings.GetInstance().SetUpdatedCollisedBalls(blueCount+greenCount+redCount+yellowCount);
-        if(blueCount == totalCount && yellowCount == totalCount && redCount == totalCount && greenCount == totalCount){
-            Debug.Log("YOU WIN"); 
+        
+	if(blueCount == totalCount && yellowCount == totalCount && redCount == totalCount && greenCount == totalCount && !LevelSettings.GetInstance().GetIsLevelCompleted()){
+            LevelSettings.GetInstance().SetIsLevelCompleted(true);
+	    LevelSettings.GetInstance().LevelComplete();
+	    WinPanel.SetActive(true);
         }
     }
 }

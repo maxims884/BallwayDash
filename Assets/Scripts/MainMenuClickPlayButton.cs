@@ -26,5 +26,6 @@ public void wasClicked(){
 	SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 	LevelSettings.GetInstance().ResetScore();
 	LevelSettings.GetInstance().LoadBestScore();
+	LevelSettings.GetInstance().SetIsLevelCompleted(false);
 }
 }
