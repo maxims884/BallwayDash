@@ -99,6 +99,7 @@ public class PlayerController : MonoBehaviour
 		LevelSettings.GetInstance().CheckBestScore();
 		LevelSettings.GetInstance().SetChangedScore(false);
 	}
+     
 	textScore.text = LevelSettings.GetInstance().GetCurrentScore().ToString();
 	textBestScore.text = LevelSettings.GetInstance().GetBestScore().ToString();
     }

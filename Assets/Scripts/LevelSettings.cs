@@ -32,7 +32,7 @@ public class LevelSettings
 
     public void SaveBallCountIndex(int index){
     	PlayerPrefs.SetInt("BallCountIndex", index);
-	CurrentLevelIndex = index;
+	    CurrentLevelIndex = index;
     }
 
     public int LoadBallCountIndex(){
@@ -48,10 +48,10 @@ public class LevelSettings
     }
 
     public void ResetScore(){
-	OldUpdatedCollisedBalls = 0;
-	UpdatedCollisedBalls = 0;
-	CurrentScore = 0;
-	OldCount = 0;
+	    OldUpdatedCollisedBalls = 0;
+	    UpdatedCollisedBalls = 0;
+	    CurrentScore = 0;
+	    OldCount = 0;
     }	
 
     public void SetUpdatedCollisedBalls(int count){
@@ -60,6 +60,7 @@ public class LevelSettings
 		OldCount = count;
 		SetChangedScore(true);
 	}
+
 	UpdatedCollisedBalls = count;
     }
 
@@ -72,7 +73,7 @@ public class LevelSettings
     }
 
     public void SetCurrentScore(int score){
-	CurrentScore = score; 
+	    CurrentScore = score; 
     }
 
     public void AddCurrentScore(int addScore){
@@ -118,14 +119,14 @@ public class LevelSettings
     }
 
     public void LevelComplete(){
-	Debug.Log("Level Complete");
+	    Debug.Log("Level Complete");
     }
 
     public void SetIsLevelCompleted(bool complete){
-	IsLevelCompleted = complete; 
+	    IsLevelCompleted = complete; 
     }
 
     public bool GetIsLevelCompleted(){
-	return IsLevelCompleted;
+	    return IsLevelCompleted;
     }
 }

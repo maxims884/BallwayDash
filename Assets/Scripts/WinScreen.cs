@@ -19,4 +19,11 @@ public class WinScreen : MonoBehaviour
     public void GoToMainMenu(){
 	SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
+
+    public void RetryLevel(){
+	    LevelSettings.GetInstance().ResetScore();
+	    // LevelSettings.GetInstance().LoadBestScore();
+	    // LevelSettings.GetInstance().SetIsLevelCompleted(false);
+	    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
