@@ -7,7 +7,8 @@ public class MainMenuHorizontalSwither : MonoBehaviour
 {
     private Text text;
     private int m_index = 0;
-
+	public AudioClip pressClip;
+	[SerializeField] private AudioSource source;
     public int index{
 		get{
 			return m_index;
@@ -36,6 +37,7 @@ public class MainMenuHorizontalSwither : MonoBehaviour
     }
 
     public void OnLeftClicked(){
+		source.PlayOneShot(pressClip);
     		if(index == 0){
 			index = data.Count - 1;
 		}
@@ -45,6 +47,7 @@ public class MainMenuHorizontalSwither : MonoBehaviour
     }
    
     public void OnRightClicked(){
+		source.PlayOneShot(pressClip);
     		if((index + 1) >= data.Count){
 			index = 0;
 		}

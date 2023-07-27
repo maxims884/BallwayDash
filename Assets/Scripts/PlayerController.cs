@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
+    public AudioClip ballClip;
+    public AudioClip wallClip;
+	public AudioSource source;
     private CharacterController controller;
     private Vector3 playerVelocity;
     private float playerSpeed = 6.0f;
@@ -34,13 +37,18 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
 	if (collision.collider.CompareTag("sph"))
-        {
+        { 
+            source.PlayOneShot(ballClip);
 	    CollisionCount++;
 	    if(CollisionCount == 3){
 		CollisionCount = 0;
 		LevelSettings.GetInstance().AddCurrentScore(-2);	
 	    }
         }
+    if (collision.collider.CompareTag("wall"))
+    { 
+        source.PlayOneShot(wallClip);
+    }
     }
 
     void Start()

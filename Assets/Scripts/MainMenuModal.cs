@@ -6,6 +6,8 @@ public class MainMenuModal : MonoBehaviour
 {
     public GameObject window;
     private Animator animator;
+    public AudioClip pressClip;
+	public AudioSource source;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,15 +32,15 @@ public class MainMenuModal : MonoBehaviour
     }
 
     public void hide(){
-	
+	source.PlayOneShot(pressClip);
 	if(animator != null)
 	{
 //		animator.ResetTrigger("open");
 		animator.SetTrigger("close");
 
 	}
-	
     }
+
     public void AnimationFinished(){
 	window.SetActive(false);
     }

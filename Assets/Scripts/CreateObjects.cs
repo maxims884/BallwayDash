@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class CreateObjects : MonoBehaviour
 {
+    public AudioClip winClip;
+	public AudioSource source;
     public GameObject obj;
     public Material greenMat;
     public Material redMat;
@@ -96,6 +100,7 @@ public class CreateObjects : MonoBehaviour
         LevelSettings.GetInstance().SetIsLevelCompleted(true);
 	    LevelSettings.GetInstance().LevelComplete();
 	    WinPanel.SetActive(true);
+        source.PlayOneShot(winClip);
         Joystick.SetActive(false);
         }
     }
