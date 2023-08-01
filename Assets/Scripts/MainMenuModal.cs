@@ -32,7 +32,7 @@ public class MainMenuModal : MonoBehaviour
     }
 
     public void hide(){
-	source.PlayOneShot(pressClip);
+    if(LevelSettings.GetInstance().GetSoundStatus() == 1) source.PlayOneShot(pressClip);
 	if(animator != null)
 	{
 //		animator.ResetTrigger("open");

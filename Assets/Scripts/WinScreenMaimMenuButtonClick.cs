@@ -25,7 +25,7 @@ public class WinScreenMaimMenuButtonClick : MonoBehaviour,IPointerDownHandler,IP
     }
 
     public void OnPointerDown(PointerEventData eventData){
-	    source.PlayOneShot(pressClip);
+	    if(LevelSettings.GetInstance().GetSoundStatus() == 1) source.PlayOneShot(pressClip);
     }
 
     public void GoToMainMenu(){

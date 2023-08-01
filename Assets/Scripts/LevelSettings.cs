@@ -15,6 +15,7 @@ public class LevelSettings
     private bool IsChangedScore = false;
     private int CurrentLevelIndex = 0;
     private bool IsLevelCompleted = false;
+    private int soundStatus = 0;
     private LevelSettings(){}
     public static LevelSettings GetInstance() {
         if(instance == null)
@@ -128,5 +129,13 @@ public class LevelSettings
 
     public bool GetIsLevelCompleted(){
 	    return IsLevelCompleted;
+    }
+
+    public void SetSoundStatus(int status){
+	    soundStatus = status; 
+    }
+
+    public int GetSoundStatus(){
+	    return soundStatus;
     }
 }

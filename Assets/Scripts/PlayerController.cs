@@ -39,10 +39,10 @@ public class PlayerController : MonoBehaviour
 	if (collision.collider.CompareTag("sph"))
         { 
             source.PlayOneShot(ballClip);
-	    CollisionCount++;
-	    if(CollisionCount == 3){
-		CollisionCount = 0;
-		LevelSettings.GetInstance().AddCurrentScore(-2);	
+	        CollisionCount++;
+	        if(CollisionCount == 3){
+		    CollisionCount = 0;
+		    LevelSettings.GetInstance().AddCurrentScore(-2);	
 	    }
         }
     if (collision.collider.CompareTag("wall"))
