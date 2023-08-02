@@ -59,24 +59,24 @@ public class CreateObjects : MonoBehaviour
 
                     Color color = thisMeshFilter.gameObject.GetComponent<Renderer>().material.color;
                     if(color.r > 0.1 && color.r < 0.11 && color.g > 0.49 && color.g < 0.5 && color.b > 0.99 && color.b < 1.1) {
-                        if(x > -10 && x < 0 && z > -13.5 && z < 0){ 
+                        if(x > 0 && x < 10 && z > -13.5 && z < 0){ 
                             blueCount ++ ;
                         }
                     }
 
-                    if(color.r > 0.05 && color.r < 0.07 && color.g > 0.99 && color.g < 1.1 && color.b > -0.1 && color.b < 0.1) {
+                    if(color.r > 0.03 && color.r < 0.05 && color.g > 0.5 && color.g < 0.6 && color.b > -0.1 && color.b < 0.1) {
                         if(x > 0 && x < 10 && z > 0 && z < 13.5){
                             greenCount++;
                         }
                     }
 
                     if(color.r > 0.99 && color.r < 1.1 && color.g > -0.1 && color.g < 0.1 && color.b > -0.1 && color.b < 0.1) {
-                        if(x > 0 && x < 10 && z > -13.5 && z < 0){
+                        if(x > -10 && x < 0 && z > -13.5 && z < 0){
                             redCount ++ ;
                         } 
                     }
 
-                    if(color.r > 0.88 && color.r < 0.9 && color.g > 0.61 && color.g < 0.63 && color.b > 0.11 && color.b < 0.13) {
+                    if(color.r > 0.9 && color.r < 1.1 && color.g > 0.63 && color.g < 0.67 && color.b > -0.1 && color.b < 0.1) {
                         if(x > -10 && x < 0 && z > 0 && z < 13.5){
                             yellowCount++;
                         }
