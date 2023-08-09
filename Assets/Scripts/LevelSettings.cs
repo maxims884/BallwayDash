@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class LevelSettings 
 {
     public static LevelSettings instance; 
@@ -16,11 +15,27 @@ public class LevelSettings
     private int CurrentLevelIndex = 0;
     private bool IsLevelCompleted = false;
     private int soundStatus = 0;
-    private LevelSettings(){}
+
+    private int  adCount = 0;
+
+    private LevelSettings(){
+    }
     public static LevelSettings GetInstance() {
         if(instance == null)
 		instance = new LevelSettings();
     	return instance;
+    }
+
+    public void IncreaseAdCount(){
+	    adCount++;
+    }
+
+    public void SetAdCount(int count){
+	    adCount = count;
+    }
+
+    public int GetAdCount(){
+	    return adCount;
     }
 
     public void SetBallCount(int count){
