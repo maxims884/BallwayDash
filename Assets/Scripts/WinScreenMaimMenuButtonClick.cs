@@ -37,7 +37,10 @@ public class WinScreenMaimMenuButtonClick : MonoBehaviour,IPointerDownHandler,IP
         LevelSettings.GetInstance().IncreaseAdCount();
         if(LevelSettings.GetInstance().GetAdCount() % 3 == 0) {
             isButtonPressed = true;
-            ad.ShowAd();
+            if(!ad.ShowAd()) {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                isButtonPressed = false;
+            }
         } else SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 

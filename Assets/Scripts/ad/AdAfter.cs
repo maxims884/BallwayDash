@@ -6,8 +6,8 @@ using GoogleMobileAds.Api;
 public class AdAfter : MonoBehaviour
 {
     private InterstitialAd interstitialAd ;
-    // private string testUnitId = "ca-app-pub-3940256099942544/1033173712";
-    private string testUnitId = "ca-app-pub-2230097402282612/9432416399";
+    private string testUnitId = "ca-app-pub-3940256099942544/1033173712";
+    // private string testUnitId = "ca-app-pub-2230097402282612/9432416399";
     
     // Start is called before the first frame update
     void Start()
@@ -69,16 +69,18 @@ public class AdAfter : MonoBehaviour
     //         interstitialAd.Show();
     // }
 
-public void ShowAd()
+public bool ShowAd()
 {
     if (interstitialAd != null&& interstitialAd.CanShowAd())
     {
         Debug.Log("Showing interstitial ad.");
         interstitialAd.Show();
+        return true;
     }
     else
     {
         Debug.LogError("Interstitial ad is not ready yet.");
+        return false;
     }
 }
 }

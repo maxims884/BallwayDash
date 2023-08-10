@@ -36,15 +36,15 @@ public class WinScreenRetryButtonClick : MonoBehaviour,IPointerDownHandler,IPoin
     public void Retry(){
        
         LevelSettings.GetInstance().IncreaseAdCount();
-        if(LevelSettings.GetInstance().GetAdCount() % 3 == 0) {
+        if(LevelSettings.GetInstance().GetAdCount() % 2 == 0) {
             isButtonPressed = true;
-            ad.ShowAd();
+            if(!ad.ShowAd()) {SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);isButtonPressed = false;}
         } else SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 
     private void RegisterEventHandlers(InterstitialAd ad)
-{
+    {
     // Raised when the ad closed full screen content.
     ad.OnAdFullScreenContentClosed += () =>
     {
