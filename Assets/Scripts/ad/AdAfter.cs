@@ -6,8 +6,8 @@ using GoogleMobileAds.Api;
 public class AdAfter : MonoBehaviour
 {
     private InterstitialAd interstitialAd ;
-    private string testUnitId = "ca-app-pub-3940256099942544/1033173712";
-    // private string testUnitId = "ca-app-pub-2230097402282612/9432416399";
+    // private string testUnitId = "ca-app-pub-3940256099942544/1033173712";
+    private string testUnitId = "ca-app-pub-2230097402282612/9432416399";
     
     // Start is called before the first frame update
     void Start()
