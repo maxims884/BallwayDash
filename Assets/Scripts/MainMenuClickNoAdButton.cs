@@ -12,6 +12,15 @@ public class MainMenuClickNoAdButton : MonoBehaviour,IPointerDownHandler,IPointe
 	[SerializeField] private AudioClip pressClip, unPressClip;
 	[SerializeField] private AudioSource source;
     
+	public GameObject button;
+	void Start()
+    {
+        if (PlayerPrefs.HasKey("removead"))
+  	    {
+		    if(PlayerPrefs.GetInt("removead") == 1)button.SetActive(false);
+      	}
+    }
+
 public void OnPointerUp(PointerEventData eventData){
 	img.sprite = _default;
 	source.PlayOneShot(unPressClip);
@@ -23,7 +32,6 @@ public void OnPointerDown(PointerEventData eventData){
 }
 
 public void wasClicked(){
-	Debug.Log("Clicked noad");
 //SceneManager.LoadScene(SceneManager.GetActiveScene().buildI//ndex + 1);
 
 }

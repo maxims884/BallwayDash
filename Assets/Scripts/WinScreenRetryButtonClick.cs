@@ -13,10 +13,15 @@ public class WinScreenRetryButtonClick : MonoBehaviour,IPointerDownHandler,IPoin
     public AdAfter ad;
 
     private bool isButtonPressed = false;
+    private int adStatus = 0;
     // Start is called before the first frame update
     void Start()
     {
         RegisterEventHandlers(ad.GetInterstitialAd()); 
+        if (PlayerPrefs.HasKey("removead"))
+  	    {
+		    adStatus = PlayerPrefs.GetInt("removead");
+      	}
     }
 
     // Update is called once per frame
@@ -36,9 +41,12 @@ public class WinScreenRetryButtonClick : MonoBehaviour,IPointerDownHandler,IPoin
     public void Retry(){
        
         LevelSettings.GetInstance().IncreaseAdCount();
-        if(LevelSettings.GetInstance().GetAdCount() % 2 == 0) {
+        if(LevelSettings.GetInstance().GetAdCount() % 2 == 0 && adStatus!=1) {
             isButtonPressed = true;
-            if(!ad.ShowAd()) {SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);isButtonPressed = false;}
+            if(!ad.ShowAd()) 
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);isButtonPressed = false;
+            }
         } else SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

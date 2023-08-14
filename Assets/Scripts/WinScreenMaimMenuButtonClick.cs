@@ -13,10 +13,15 @@ public class WinScreenMaimMenuButtonClick : MonoBehaviour,IPointerDownHandler,IP
     public AdAfter ad;
 
     private bool isButtonPressed = false;
+    private int adStatus = 0;
     // Start is called before the first frame update
     void Start()
     {
         RegisterEventHandlers(ad.GetInterstitialAd()); 
+        if (PlayerPrefs.HasKey("removead"))
+  	    {
+		    adStatus = PlayerPrefs.GetInt("removead");
+      	}
     }
 
     // Update is called once per frame
@@ -35,7 +40,7 @@ public class WinScreenMaimMenuButtonClick : MonoBehaviour,IPointerDownHandler,IP
 
     public void GoToMainMenu(){
         LevelSettings.GetInstance().IncreaseAdCount();
-        if(LevelSettings.GetInstance().GetAdCount() % 3 == 0) {
+        if(LevelSettings.GetInstance().GetAdCount() % 3 == 0 && adStatus!=1) {
             isButtonPressed = true;
             if(!ad.ShowAd()) {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
