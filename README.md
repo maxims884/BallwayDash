@@ -4,5 +4,5 @@ The game is about using a cube to scatter all the balls into the corresponding c
 
 Additional Libraries:
     
-    Google AdMob fow showing ads
+    Google AdMob for showing ads
     
