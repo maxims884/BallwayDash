@@ -21,14 +21,16 @@ public class BonusCounter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        GameObject child1 = other.transform.GetChild(0).gameObject;
-        GameObject child2 = child1.transform.GetChild(0).gameObject;
-        string text = child2.GetComponent<TextMeshProUGUI>().text;
-        Debug.Log("On Trigger Bonus " + text);
-        int value = Int32.Parse(text);
-        int playerValue = Int32.Parse(playerText.text);
-        int res = playerValue + value;
-        playerText.text = res.ToString();
-        Destroy(other.gameObject);
+        if(other.gameObject.name == "CubeRight" || other.gameObject.name == "CubeCenter" || other.gameObject.name == "CubeLeft"){
+            GameObject child1 = other.transform.GetChild(0).gameObject;
+            GameObject child2 = child1.transform.GetChild(0).gameObject;
+            string text = child2.GetComponent<TextMeshProUGUI>().text;
+            //Debug.Log("On Trigger Bonus " + text);
+            int value = Int32.Parse(text);
+            int playerValue = Int32.Parse(playerText.text);
+            int res = playerValue + value;
+            playerText.text = res.ToString();
+            Destroy(other.gameObject);
+        }
     }
 }
