@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using UnityEngine;
 public class TileGenerator : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class TileGenerator : MonoBehaviour
     private float maxSpeed = 40;
     private float increaseSpeedStep = 0.2f;
     private float countTimer = 0;
+
+    public bool isPauseGenerate = false;
     private System.Random rand = new System.Random();
     // Start is called before the first frame update
     void Start()
@@ -30,7 +33,7 @@ public class TileGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_tiles.Count < maxCount)
+        if (_tiles.Count < maxCount && !isPauseGenerate)
         {
             GenerateTile();
         }
@@ -46,6 +49,14 @@ public class TileGenerator : MonoBehaviour
         countTimer++;
     }
 
+    public void SetPauseGenerate() { 
+        isPauseGenerate = true;
+
+        foreach (Tile tile in _tiles)
+        {
+            tile.setPause();
+        }
+    }
     private void GenerateTile()
     {
         int IsNeedBonusTile = getRand(1, 5);
