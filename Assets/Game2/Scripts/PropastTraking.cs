@@ -13,20 +13,15 @@ public class PropastTraking : MonoBehaviour
     public TextMeshProUGUI playerText;
     private float countTimer = 0;
     private const float minDistance = 0.2f;
-    MeshDestroy destroy = null;
     // Start is called before the first frame update
     void Start()
     {
-        destroy = new MeshDestroy();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        	//if(player.transform.position.y < FallingThreshold){
-		//Debug.Log("player.transform.position.y " + player.transform.position.y);
-		//player.transform.position = new Vector3(player.transform.position.x, FallingThreshold, player.transform.position.z);
-	//}
     }
 
     void FixedUpdate()
@@ -35,37 +30,26 @@ public class PropastTraking : MonoBehaviour
     	
     }
 
-    //     private void OnTriggerEnter(Collider other)
-    // {
-    //     if(other.gameObject.name == "BridgeLeft" || other.gameObject.name == "BridgeCenter" || other.gameObject.name == "BridgeRight"){
-
-    //     }
-    // }
-
     void OnTriggerStay(Collider other)
     {
        
 
-        if (other.gameObject.name == "BridgeLeft" || other.gameObject.name == "BridgeCenter" || other.gameObject.name == "BridgeRight"){
-            //Debug.Log("other.gameObject.transform.localSacale.z; " + other.gameObject.transform.parent.gameObject.transform.localScale.z);
-            // + Vector3.forward * (other.gameObject.transform.parent.gameObject.transform.localScale.z / 2)
-            //Debug.Log("(transform.position - target.transform.position).sqrMagnitude " + (player.transform.position - 
-              //  (other.gameObject.transform.parent.gameObject.transform.position + Vector3.forward * (other.gameObject.transform.parent.gameObject.transform.localScale.z / 2))).sqrMagnitude);
-            if (countTimer > 9)
+        if (other.CompareTag("lava")){
+            if (countTimer > 11)
             {
                 countTimer = 0;
                 int playerValue = Int32.Parse(playerText.text);
 
                 int res = playerValue - 1;
 
-                if (playerValue == 1)
-                {
-                    if ((player.transform.position -
-                    (other.gameObject.transform.parent.gameObject.transform.position + Vector3.forward * (other.gameObject.transform.parent.gameObject.transform.localScale.z / 2))).sqrMagnitude <= minDistance * minDistance)
-                    {
-                        res = 1;
-                    }
-                }
+                //if (playerValue == 1)
+                //{
+                //    if ((player.transform.position -
+                //    (other.gameObject.transform.parent.gameObject.transform.position + Vector3.forward * (other.gameObject.transform.parent.gameObject.transform.localScale.z / 2))).sqrMagnitude <= minDistance * minDistance)
+                //    {
+                //        res = 1;
+                //    }
+                //}
 
                 
                 playerText.text = res.ToString();
@@ -73,8 +57,9 @@ public class PropastTraking : MonoBehaviour
                 if(res <= 0)
                 {
                     tileGenerator.GetComponent<TileGenerator>().SetPauseGenerate();
-                    other.gameObject.GetComponent<Collider>().isTrigger = false;
-                    destroy.DestroyMesh(other.gameObject);
+                    other.gameObject.GetComponent<Collider>().enabled = false;
+                    Destrictible script = other.GetComponent<Destrictible>();
+                    script.DestroyObj();
                 }
             }
             countTimer++;

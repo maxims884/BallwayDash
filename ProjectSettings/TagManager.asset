@@ -6,6 +6,7 @@ TagManager:
   tags:
   - sph
   - wall
+  - lava
   layers:
   - Default
   - TransparentFX
