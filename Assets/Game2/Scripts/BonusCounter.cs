@@ -31,6 +31,13 @@ public class BonusCounter : MonoBehaviour
             int res = playerValue + value;
             playerText.text = res.ToString();
             Destroy(other.gameObject);
+
+            //for (int i = 0; i < other.gameObject.transform.parent.transform.childCount; i++)
+            //{
+            //    GameObject child = other.gameObject.transform.GetChild(i).gameObject;
+            //    Debug.Log("list  " + child.name);
+            //}
+
         }
     }
 }

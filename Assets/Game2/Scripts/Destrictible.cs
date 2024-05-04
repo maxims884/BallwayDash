@@ -7,11 +7,16 @@ public class Destrictible : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject obj;
-    public GameObject parent;
+    public GameObject parentObj;
+    public int n;
 
-    public void DestroyObj()
+    public GameObject DestroyObj()
     {
-        Instantiate(obj, parent.transform);
+        GameObject newObj;
+        newObj = Instantiate(obj,  parentObj.transform);
+        newObj.transform.position = transform.position;
         Destroy(gameObject);
+        return newObj;
     }
+
 }

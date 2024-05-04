@@ -21,7 +21,6 @@ public class TileGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("start ");
         _tiles.First().speed = speed;
         _tiles[1].speed = speed;
         for (int i = 0; i < maxCount; i++)
@@ -62,7 +61,8 @@ public class TileGenerator : MonoBehaviour
         int IsNeedBonusTile = getRand(1, 5);
         int IsNeedAddHole = getRand(3, 7);
         GameObject _prefab;
-        if(IsNeedAddHole == 5){
+        if(IsNeedAddHole == 5 && !String.Equals(_tiles.Last().name, "TileHole(Clone)") && !String.Equals(_tiles.Last().name,"TileHole"))
+        {
             _prefab = _tilePrefabHole;
             _prefab.transform.localScale = new Vector3(_prefab.transform.localScale.x, _prefab.transform.localScale.y, getRand(5,20));
              
