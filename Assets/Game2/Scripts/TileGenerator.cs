@@ -27,6 +27,7 @@ public class TileGenerator : MonoBehaviour
         {
             GenerateTile();
         }
+        SetPauseGenerate();
     }
 
     // Update is called once per frame
@@ -56,6 +57,17 @@ public class TileGenerator : MonoBehaviour
             tile.setPause();
         }
     }
+
+    public void SetStartGenerate()
+    {
+        isPauseGenerate = false;
+
+        foreach (Tile tile in _tiles)
+        {
+            tile.setUnPause();
+        }
+    }
+
     private void GenerateTile()
     {
         int IsNeedBonusTile = getRand(1, 5);

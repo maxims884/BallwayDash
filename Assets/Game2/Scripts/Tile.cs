@@ -24,4 +24,9 @@ public class Tile : MonoBehaviour
     { 
         isPause = true; 
     }
+
+    public void setUnPause()
+    {
+        isPause = false;
+    }
 }

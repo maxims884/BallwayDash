@@ -10,7 +10,7 @@ public class BonusCounter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        playerText.text =  "";
     }
 
     // Update is called once per frame
